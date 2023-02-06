@@ -28,13 +28,11 @@ export const theme = extendTheme({ colors: {
     DARK_PRIMARY: '#29353C',
     LIGHT_PRIMARY: '#AAC7D8',
     PRIMARY: '#44576D',
-    300: '#7AC1E4',
-    400: '#47A9DA',
-    500: '#0088CC',
-    600: '#007AB8',
-    700: '#006BA1',
-    800: '#005885',
-    900: '#003F5E',
+    TEXT_ICONS: '#FFFFFF',
+    ACCENT: '#768A96',
+    PRIMARY_TEXT: '#212121',
+    SECONDARY_TEXT: '#757575',
+    DIVIDER : '#BDBDBD',
   },
   // Redefining only one shade, rest of the color will remain same.
   amber: {
