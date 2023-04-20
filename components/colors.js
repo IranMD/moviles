@@ -1,0 +1,12 @@
+const COLORS = {
+    ARK_PRIMARY: '#29353C',
+    LIGHT_PRIMARY: '#AAC7D8',
+    PRIMARY: '#44576D',
+    TEXT_ICONS: '#FFFFFF',
+    ACCENT: '#768A96',
+    PRIMARY_TEXT: '#212121',
+    SECONDARY_TEXT: '#757575',
+    DIVIDER : '#BDBDBD',
+  };
+  
+  export default COLORS;
