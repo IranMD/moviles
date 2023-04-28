@@ -3,6 +3,7 @@ import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity
 import Svg, { Path, Defs, Pattern, Use, Image } from "react-native-svg"
 import GradientText from './GradientText';
 import GradientButton from './GradientButton';
+import theme from "./theme";
 
 
 
@@ -40,65 +41,41 @@ export default function PreLogin() {
     }
 
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.container}>
-                <SvgTop />
-
-
-                 
-                <GradientText text="FoodApp" style={[styles.title]}/>
-                <TouchableOpacity style={styles.containerButton}>
-                    <GradientButton text="Sig In" style={styles.text}/>
-                </TouchableOpacity>
-            </View>
+        <View style={styles.container}>
+            <SvgTop />
+            <GradientText text="FoodApp" style={[styles.title]} />
+            <TouchableOpacity style={styles.containerButton}>
+                <GradientButton text="Sig In" style={styles.text} />
+            </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
+    container: {
         flex: 1,
-        backgroundColor: '#f1f1f1',
-    }, container: {
-        flex: 1,
-        backgroundColor: '#1A1A24',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    title:{
+    title: {
         fontSize: 40,
         fontWeight: '900'
     },
-    titulo: {
-        fontSize: 40,
-        color: '#FFC200',
-        fontWeight: 'bold'
-    },
-    subTitle: {
-        fontSize: 20,
-        color: 'gray',
-    },
-    textInput: {
-
-        width: '80%',
-        padding: 10,
-        paddingStart: 30,
-        marginTop: 20,
-        borderRadius: 30,
-        height: 50,
-        backgroundColor: '#fff',
-
-    },
     text: {
         fontSize: 14,
-        color: '#ffffff'
-
+        color: theme.text_icons,
+        width: '80%',
+        height: 30,
+        borderRadius: 25,
+        padding: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
     },
     containerButton: {
         alignItems: 'center',
         width: 300,
         marginTop: 60,
-
     },
 
 })

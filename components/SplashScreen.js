@@ -10,9 +10,10 @@ import GradientText from './GradientText';
 import GradientButton from './GradientButton';
 import { LinearTextGradient } from "react-native-text-gradient";
 import { LinearGradientText } from 'react-native-linear-gradient-text';
+import theme from '../components/theme';
 
 
-export default function LoginScreen() {
+export default function SplashScreen() {
 
     function SvgTop() {
         return (
@@ -46,7 +47,7 @@ export default function LoginScreen() {
     }
 
     return (
-        <View style={styles.mainContainer}>
+        
             <View style={styles.container}>
                 <SvgTop />
 
@@ -54,17 +55,12 @@ export default function LoginScreen() {
                  
                 <GradientText text="FoodApp" style={[styles.title]}/>
             </View>
-        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
+   container: {
         flex: 1,
-        backgroundColor: '#f1f1f1',
-    }, container: {
-        flex: 1,
-        backgroundColor: '#1A1A24',
         alignItems: 'center',
         justifyContent: 'center'
     },

@@ -8,18 +8,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import theme from './theme';
 
-
-
-export default function GradientButton(props) {
+export default function DisableGradientButton(props) {
     return (
         <LinearGradient
             // Button Linear Gradient
-            colors={[theme.primary_color, '#E43F04', theme.secondary_color]}
-            star={{ x: 0, y: 0}}
-            end={{ x: 1, y: 1}}
+            colors={[theme.disable_light_color, theme.disable_light_color]}
             style={[props.style]}
         >
-        <Text style={[props.style, { backgroundColor: 'transparent' }]}>{props.text}</Text>
+        <Text style={[props.style, { backgroundColor: 'transparent' }, {alignItems: 'center'}]}>{props.text}</Text>
         </LinearGradient>
     );
 }
@@ -35,4 +31,3 @@ const styles = StyleSheet.create({
 
     }
 })
-

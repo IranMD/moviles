@@ -6,13 +6,13 @@ import GradientText from './GradientText';
 import GradientButton from './GradientButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import theme from './theme';
 
 
 export default function Login() {
 
 
     return (
-        <View style={styles.mainContainer}>
             <View style={styles.container}>
                 <GradientText text="FoodApp" style={[styles.title]} />
                 <HStack width={'70%'} marginTop={7} marginBottom={7}>
@@ -21,18 +21,18 @@ export default function Login() {
 
                 
                 <HStack style={styles.textInputContainer}>
-                    <MaterialCommunityIcons name='email' color={'#FFFFFF'} size={20}/>
+                    <MaterialCommunityIcons name='email' color={theme.text_icons} size={20}/>
                     <TextInput
                         placeholder='Email'
-                        placeholderTextColor={'#FFFFFF'}
+                        placeholderTextColor={theme.text_icons}
                         style={styles.textInput}/>
                 </HStack>
 
                 <HStack style={styles.textInputContainer}>
-                    <MaterialCommunityIcons name='key' color={'#FFFFFF'} size={20} />
+                    <MaterialCommunityIcons name='key' color={theme.text_icons} size={20} />
                     <TextInput
                     placeholder='Password'
-                    placeholderTextColor={'#FFFFFF'}
+                    placeholderTextColor={theme.text_icons}
                     style={styles.textInput}
                 />
                 </HStack>
@@ -42,17 +42,13 @@ export default function Login() {
                     <GradientButton text="Log In" style={styles.text} />
                 </TouchableOpacity>
             </View>
-        </View>
+        
     );
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
+container: {
         flex: 1,
-        backgroundColor: '#f1f1f1',
-    }, container: {
-        flex: 1,
-        backgroundColor: '#1A1A24',
         alignItems: 'center',
         justifyContent: 'center'
     }, containerButton: {
@@ -66,11 +62,18 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 14,
-        color: '#ffffff'
+        color: theme.text_icons,
+        width: '80%',
+        height: 30,
+        borderRadius: 25,
+        padding: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
     },
     subTitle: {
         fontSize: 25,
-        color: '#FFFFFF',
+        color: theme.text_icons,
         textAlign: 'left',
         fontWeight: '500'
     },
@@ -81,12 +84,12 @@ const styles = StyleSheet.create({
         paddingStart: 10,
         height: 50,
         backgroundColor: 'transparent',
-        color: '#FFFFFF'
+        color: theme.text_icons
     },
     textInputContainer: {
         alignItems:'center',
         justifyContent:'center',
-        borderColor:'#5D5C62',
+        borderColor: theme.gray_borderColor,
         borderWidth:1,
         borderRadius:30,
         marginTop: 20,

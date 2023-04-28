@@ -11,7 +11,9 @@ import {
   extendTheme,
   VStack,
   Box,
+  View
 } from "native-base";
+import { StyleSheet} from "react-native";
 import C from "./components/C";
 import CBox from "./components/CBox";
 import Centrado from "./components/Centrado";
@@ -20,9 +22,13 @@ import Xd from "./components/xd";
 import LoginScreen from "./components/LoginScreen";
 import PreLogin from "./components/PreLogin";
 import SplashScreen from "./components/SplashScreen";
+import HomePageAdmin from "./components/HomePageAdmin";
+import theme from './components/theme';
+import BackordersScreen from "./components/BackordersScreen";
+
 
 // extend the theme
-export const theme = extendTheme({ colors: {
+/*export const theme = extendTheme({ colors: {
   // Add new color
   color: {
     DARK_PRIMARY: '#29353C',
@@ -42,15 +48,22 @@ export const theme = extendTheme({ colors: {
 config: {
   // Changing initialColorMode to 'dark'
   initialColorMode: 'dark',
-}, });
+}, });*/
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={theme}>
-      
+    <NativeBaseProvider>
+      <View style={styles.mainContainer}>
+        <BackordersScreen/>
+      </View>
         
-        <Login/>
-      
     </NativeBaseProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+      flex: 1,
+      backgroundColor: theme.background_color,
+  }
+})
