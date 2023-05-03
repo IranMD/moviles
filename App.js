@@ -25,6 +25,7 @@ import SplashScreen from "./components/SplashScreen";
 import HomePageAdmin from "./components/HomePageAdmin";
 import theme from './components/theme';
 import BackordersScreen from "./components/BackordersScreen";
+import UsersScreen from "./components/UsersScreen";
 
 
 // extend the theme
@@ -54,9 +55,8 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <BackordersScreen/>
+        <UsersScreen/>
       </View>
-        
     </NativeBaseProvider>
   );
 }
@@ -65,5 +65,6 @@ const styles = StyleSheet.create({
   mainContainer: {
       flex: 1,
       backgroundColor: theme.background_color,
+      
   }
 })

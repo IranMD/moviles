@@ -11,7 +11,6 @@ import theme from './theme';
 
 export default function Login() {
 
-
     return (
             <View style={styles.container}>
                 <GradientText text="FoodApp" style={[styles.title]} />

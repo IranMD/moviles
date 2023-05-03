@@ -177,11 +177,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: 10,
-  }, containerButton: {
+  }, 
+  containerButton: {
     alignItems: 'center',
     width: 300,
     marginTop: 60,
-  }, titleScreen: {
+  }, 
+  titleScreen: {
     fontSize: 30,
     fontWeight: '400',
     paddingLeft: 10,
@@ -189,7 +191,8 @@ const styles = StyleSheet.create({
   },
   salesContainer: {
     height: 100,
-  }, cardIcon: {
+  }, 
+  cardIcon: {
     backgroundColor: theme.cards_background,
     width: '45%',
     marginLeft: 5,
@@ -201,24 +204,29 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: 10,
     paddingBottom: 20
-  }, textCard: {
+  }, 
+  textCard: {
     color: theme.text_icons,
     fontSize: 17,
     fontWeight: '700',
     width: '70%'
-  }, numbersCard: {
+  }, 
+  numbersCard: {
     color: theme.text_icons,
     fontSize: 20,
     fontWeight: '900',
-  }, textRow: {
+  }, 
+  textRow: {
     justifyContent: 'space-evenly',
     width: '100%',
     paddingRight: 19,
     marginTop: 5
-  }, boxProgress: {
+  }, 
+  boxProgress: {
     width: '90%',
     marginTop: 15
-  }, textButton: {
+  }, 
+  textButton: {
     color: theme.text_icons,
     width: '130%',
     height: 30,
@@ -227,31 +235,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center', 
     textAlign: 'center'
-  }, actionSheet: {
+  }, 
+  actionSheet: {
     borderTopRadius: 20,
     backgroundColor: theme.cards_background,
     paddingLeft: 60,
     paddingRight: 60,
     paddingTop: 20,
     paddingBottom: 20,
-  }, nameText:{
+  }, 
+  nameText:{
     fontSize: 30,
     fontWeight: '700',
     paddingLeft: 20
-  }, rowActionSheet:{
+  }, 
+  rowActionSheet:{
     paddingBottom: 10
-  }, jobText:{
+  }, 
+  jobText:{
     color: theme.text_icons,
     fontSize: 20, 
     fontWeight: '300',
     paddingLeft: 20
-  }, dateText:{
+  }, 
+  dateText:{
     color: theme.text_icons,
     textAlign: 'left',
     fontSize: 17,
     fontWeight: '200',
     width: '130%',
     paddingBottom: 17
-
   }
 })
