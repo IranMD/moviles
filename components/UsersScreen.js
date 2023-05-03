@@ -8,12 +8,16 @@ import GradientDashboard from './GradientDashboard';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
 import GradientButton from './GradientButton';
-import DisableGradientButton from './DIsableGradientButton';
+import DisableGradientButton from './DisableGradientButton';
 import GradientIcon from './GradientIcon';
+import DeleteGradientButton from './DeleteGradientButton';
 
 export default function UsersScreen() {
 
     const { isOpen, onOpen, onClose } = useDisclose();
+ 
+    
+    <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
     const users = [
         { id: '1', name: 'Luis Fernando Jasso Frausto', job: 'Head Waiter', contact: 'luis.jasso@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
         { id: '2', name: 'Iran Mendoza De La Torre', job: 'Waitress', contact: 'iranmendoza@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
@@ -47,26 +51,28 @@ export default function UsersScreen() {
                         <Text style={styles.sectionTitle}>Waiters Accounts</Text>
 
                         {users.map((item) => (
+                            <Pressable onPress={(onOpen)} >
 
-                            <Center style={styles.userContainer}>
-                                <HStack alignItems={'center'}>
-                                    <Avatar source={{
-                                        uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                    }} size={50} />
-                                    <VStack flex={1} marginLeft={2}>
-                                        <VerticalGradientText style={styles.waiterName} numberOfLines={1} text={item.name} flex={1} />
-                                        <Text style={styles.infoJob}>{item.job}</Text>
-                                    </VStack>
-                                </HStack>
-                                <HStack alignItems={'center'}>
-                                    <Text style={styles.contactSubtitle}>Contact: </Text>
-                                    <Text style={styles.infoContact}>{item.contact}</Text>
-                                    <HStack justifyContent={'flex-end'} width={'100%'} flex={1}>
-                                        <VerticalGradientText text="More..." style={styles.moreText} />
+                                <Center style={styles.userContainer}>
+                                    <HStack alignItems={'center'}>
+                                        <Avatar source={{
+                                            uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                        }} size={50} />
+                                        <VStack flex={1} marginLeft={2}>
+                                            <VerticalGradientText style={styles.waiterName} numberOfLines={1} text={item.name} flex={1} />
+                                            <Text style={styles.infoJob}>{item.job}</Text>
+                                        </VStack>
                                     </HStack>
-                                </HStack>
+                                    <HStack alignItems={'center'}>
+                                        <Text style={styles.contactSubtitle}>Contact: </Text>
+                                        <Text style={styles.infoContact}>{item.contact}</Text>
+                                        <HStack justifyContent={'flex-end'} width={'100%'} flex={1}>
+                                            <VerticalGradientText text="More..." style={styles.moreText} />
+                                        </HStack>
+                                    </HStack>
 
-                            </Center>
+                                </Center>
+                            </Pressable>
                         ))}
 
                     </VStack>
@@ -76,9 +82,11 @@ export default function UsersScreen() {
 
 
             </ScrollView>
+
             <Pressable onPress={(onOpen)}>
                 <VerticalGradientButton text="Add new user" style={styles.addButton} />
             </Pressable>
+
 
             <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
                 <Actionsheet.Content style={styles.actionSheet}>
@@ -121,9 +129,14 @@ export default function UsersScreen() {
                     </HStack>
 
                     <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
+                    <DeleteGradientButton text={'Delete'} style={styles.saveButton}/>
 
                 </Actionsheet.Content>
             </Actionsheet>
+
+
+
+            
 
 
 
@@ -234,18 +247,18 @@ const styles = StyleSheet.create({
     actionSheetTitle: {
         fontSize: 26,
         fontWeight: '500',
-        paddingLeft: 20, 
-        marginBottom: 7, 
+        paddingLeft: 20,
+        marginBottom: 7,
     },
     boxImage: {
-        backgroundColor: theme.background_color, 
-        borderRadius: 50, 
-        width: 70,  
-        height: 70,  
-        justifyContent: 'center',  
+        backgroundColor: theme.background_color,
+        borderRadius: 50,
+        width: 70,
+        height: 70,
+        justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 10,
-    }, 
+    },
     textInput: {
         width: '100%',
         height: 30,

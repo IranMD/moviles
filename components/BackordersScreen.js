@@ -8,7 +8,7 @@ import GradientDashboard from './GradientDashboard';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
 import GradientButton from './GradientButton';
-import DisableGradientButton from './DIsableGradientButton';
+import DisableGradientButton from './DisableGradientButton';
 
 export default function BackordersScreen() {
 
