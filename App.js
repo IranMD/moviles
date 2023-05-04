@@ -26,6 +26,7 @@ import HomePageAdmin from "./components/HomePageAdmin";
 import theme from './components/theme';
 import BackordersScreen from "./components/BackordersScreen";
 import UsersScreen from "./components/UsersScreen";
+import MenuScreen from "./components/MenuScreen";
 
 
 // extend the theme
@@ -55,7 +56,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <UsersScreen/>
+        <MenuScreen/>
       </View>
     </NativeBaseProvider>
   );

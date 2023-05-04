@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
 import React from "react";
 import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
@@ -15,7 +15,7 @@ import DeleteGradientButton from './DeleteGradientButton';
 export default function UsersScreen() {
 
     const { isOpen, onOpen, onClose } = useDisclose();
- 
+  
     
     <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
     const users = [
@@ -52,7 +52,6 @@ export default function UsersScreen() {
 
                         {users.map((item) => (
                             <Pressable onPress={(onOpen)} >
-
                                 <Center style={styles.userContainer}>
                                     <HStack alignItems={'center'}>
                                         <Avatar source={{
