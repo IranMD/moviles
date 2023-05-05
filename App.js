@@ -27,6 +27,7 @@ import theme from './components/theme';
 import BackordersScreen from "./components/BackordersScreen";
 import UsersScreen from "./components/UsersScreen";
 import MenuScreen from "./components/MenuScreen";
+import AddDishScreen from "./components/AddDishScreen";
 
 
 // extend the theme
@@ -56,7 +57,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <MenuScreen/>
+        <AddDishScreen/>
       </View>
     </NativeBaseProvider>
   );
