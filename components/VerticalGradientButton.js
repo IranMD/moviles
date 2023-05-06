@@ -15,19 +15,7 @@ export default function VericalGradientButton(props) {
             colors={[theme.primary_color, theme.secondary_color]}
             style={[props.style]}
         >
-        <Text style={[props.style, { backgroundColor: 'transparent' }, {alignItems: 'center'}]}>{props.text}</Text>
+            <Text style={[props.style, { backgroundColor: 'transparent' }, { alignItems: 'center' }]}>{props.text}</Text>
         </LinearGradient>
     );
 }
-
-const styles = StyleSheet.create({
-    button: {
-        width: '80%',
-        height: 30,
-        borderRadius: 25,
-        padding: 2,
-        alignItems: 'center',
-        justifyContent: 'center'
-
-    }
-})

@@ -15,11 +15,11 @@ export default function GradientButton(props) {
         <LinearGradient
             // Button Linear Gradient
             colors={[theme.primary_color, '#E43F04', theme.secondary_color]}
-            star={{ x: 0, y: 0}}
-            end={{ x: 1, y: 1}}
+            star={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
             style={[props.style]}
         >
-        <Text style={[props.style, { backgroundColor: 'transparent' }]}>{props.text}</Text>
+            <Text style={[props.style, { backgroundColor: 'transparent', alignItems: 'center' }]}>{props.text}</Text>
         </LinearGradient>
     );
 }

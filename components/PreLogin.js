@@ -45,7 +45,7 @@ export default function PreLogin() {
             <SvgTop />
             <GradientText text="FoodApp" style={[styles.title]} />
             <TouchableOpacity style={styles.containerButton}>
-                <GradientButton text="Sig In" style={styles.text} />
+                <GradientButton text="Sig In" style={styles.button} />
             </TouchableOpacity>
         </View>
     );
@@ -61,16 +61,15 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: '900'
     },
-    text: {
+    button: {
         fontSize: 14,
         color: theme.text_icons,
-        width: '80%',
         height: 30,
         borderRadius: 25,
-        padding: 2,
-        alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        width: 230, 
     },
     containerButton: {
         alignItems: 'center',

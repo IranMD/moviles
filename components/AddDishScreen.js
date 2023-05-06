@@ -52,7 +52,9 @@ export default function AddDishScreen() {
 
 
                 <Center style={styles.imageContainer}>
-                    <GradientIcon name='file-image-plus-outline' size={45} />
+                    <TouchableOpacity>
+                        <GradientIcon name='file-image-plus-outline' size={45} />
+                    </TouchableOpacity>
                 </Center>
 
 
@@ -60,9 +62,9 @@ export default function AddDishScreen() {
 
             </View >
 
-            <Pressable >
+            <TouchableOpacity >
                 <VerticalGradientButton text="Save" style={styles.saveButton} />
-            </Pressable>
+            </TouchableOpacity>
         </>
     );
 }

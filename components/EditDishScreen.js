@@ -52,41 +52,34 @@ export default function AddDishScreen() {
 
 
                 <Center style={styles.imageContainer}>
-                    <GradientIcon name='file-image-plus-outline' size={45} />
+                    <TouchableOpacity>
+                        <GradientIcon name='file-image-plus-outline' size={45} />
+                    </TouchableOpacity>
                 </Center>
             </View >
 
             <HStack style={styles.buttonsContainer}>
-                <Pressable >
+                <TouchableOpacity>
                     <VerticalGradientButton text="Save Changes" style={styles.actionButton} />
-                </Pressable>
+                </TouchableOpacity>
 
-                <Pressable onPress={(onOpen)}>
+                <TouchableOpacity onPress={(onOpen)}>
                     <DeleteGradientButton text="Delete Dish" style={styles.actionButton} />
-                </Pressable>
+                </TouchableOpacity>
             </HStack>
 
 
             <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
                 <Actionsheet.Content style={styles.actionSheet}>
-
                     <VerticalGradientText text={'Delete Dish?'} style={styles.actionSheetTitle} />
-
                     <HStack style={styles.containerActionButtons}>
-                        <Pressable >
+                        <TouchableOpacity onPress={onClose}>
                             <VerticalGradientButton text="Cancel" style={styles.actionButton} />
-                        </Pressable>
-
-                        <Pressable onPress={(onOpen)}>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={(onOpen)}>
                             <DeleteGradientButton text="Yes, delete" style={styles.actionButton} />
-                        </Pressable>
-
-
-
+                        </TouchableOpacity>
                     </HStack>
-
-
-
                 </Actionsheet.Content>
             </Actionsheet>
         </>
@@ -197,7 +190,9 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '500',
         paddingLeft: 20,
-        marginBottom: 7
+        marginBottom: 7, 
+        textAlign: 'left',  
+        width: 370
     },
     containerActionButtons: {
         justifyContent: 'space-between',

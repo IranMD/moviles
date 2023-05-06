@@ -14,9 +14,9 @@ export default function BackordersScreen() {
 
     const { isOpen, onOpen, onClose } = useDisclose();
     const orders = [
-        {id: '1', dish: 'Meatball and Spaghetti', table: '1', waiter: 'Don Wicho', status: 'not delivered' },
-        {id: '2', dish: 'Pizza', table: '2', waiter: 'Doña Iran', status: 'delivered' },
-        {id: '3', dish: 'Cerveza', table: '1', waiter: '', status: 'not delivered' },
+        { id: '1', dish: 'Meatball and Spaghetti', table: '1', waiter: 'Don Wicho', status: 'not delivered' },
+        { id: '2', dish: 'Pizza', table: '2', waiter: 'Doña Iran', status: 'delivered' },
+        { id: '3', dish: 'Cerveza', table: '1', waiter: '', status: 'not delivered' },
     ];
 
     return (
@@ -26,26 +26,32 @@ export default function BackordersScreen() {
                     <VerticalGradientText text="Pending Orders" style={styles.titleScreen} />
 
                     <HStack style={styles.categoriesRow}>
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Drinks </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Drinks </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Pasta </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Pasta </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Pizza </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Pizza </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
                     </HStack>
 
@@ -72,7 +78,9 @@ export default function BackordersScreen() {
                                             <MaterialCommunityIcons name='account' color={theme.text_icons} size={20} />
                                             <Text style={styles.infoOrder}>Waiter:  {item.waiter}</Text>
                                             <HStack justifyContent={'flex-end'} width={'100%'} flex={1}>
-                                                <VerticalGradientButton text="Deliver" style={styles.deliverButton} />
+                                                <TouchableOpacity>
+                                                    <VerticalGradientButton text="Deliver" style={styles.deliverButton} />
+                                                </TouchableOpacity>
                                             </HStack>
                                         </HStack>
                                     </VStack>
@@ -102,13 +110,15 @@ export default function BackordersScreen() {
                                         <MaterialCommunityIcons name='account' color={theme.text_icons} size={20} />
                                         <Text style={styles.infoOrder}>Waiter: Don Wicho</Text>
                                         <HStack justifyContent={'flex-end'} width={'100%'} flex={1}>
-                                        <DisableGradientButton text="Delivered" style={styles.deliverButton} />
+                                            <TouchableOpacity>
+                                                <DisableGradientButton text="Delivered" style={styles.deliverButton} />
+                                            </TouchableOpacity>
                                         </HStack>
                                     </HStack>
                                 </VStack>
                             </HStack>
                         </Center>
-                        
+
                     </VStack>
 
 
@@ -133,37 +143,37 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         backgroundColor: theme.background_color,
-    }, 
+    },
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
-    }, 
+    },
     categoriesContainer: {
         backgroundColor: theme.cards_background,
         width: 100,
         height: 45,
         borderRadius: 30,
-    }, 
+    },
     categoriesRow: {
         marginTop: 20,
         justifyContent: 'space-evenly',
         width: '100%'
-    }, 
+    },
     categoriesName: {
         color: theme.text_icons,
         fontSize: 15,
         fontWeight: 'bold'
-    }, 
+    },
     sectionTitle: {
         color: theme.text_icons,
         fontSize: 21,
         fontWeight: '500',
         textAlign: 'left',
-    }, 
+    },
     sectionContainer: {
         width: '100%',
         padding: 10,
-    }, 
+    },
     orderContainer: {
         width: '100%',
         paddingRight: 7,
@@ -171,20 +181,20 @@ const styles = StyleSheet.create({
         backgroundColor: theme.cards_background,
         borderRadius: 10,
         alignItems: 'flex-start',
-    }, 
+    },
     dishName: {
         color: theme.text_icons,
         fontSize: 15,
         fontWeight: '500',
         width: '100%',
         paddingBottom: 10
-    }, 
+    },
     infoOrder: {
         color: theme.text_icons,
         fontSize: 12,
         paddingLeft: 4,
         paddingRight: 10,
-    }, 
+    },
     deliverButton: {
         color: theme.text_icons,
         fontSize: 14,
@@ -194,7 +204,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 70,
         textAlign: 'center',
-    }, 
+    },
     totalButton: {
         color: theme.text_icons,
         width: '90%',

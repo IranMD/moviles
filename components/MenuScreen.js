@@ -28,31 +28,39 @@ export default function MenuScreen() {
 
                     <HStack style={styles.searchContainer}>
                         <TextInput placeholder='Search' placeholderTextColor={theme.text_icons} style={styles.searchInput}></TextInput>
-                        <GradientIcon name="magnify" size={27} />
+                        <TouchableOpacity>
+                            <GradientIcon name="magnify" size={27} />
+                        </TouchableOpacity>
                     </HStack>
 
 
                     <HStack style={styles.categoriesRow}>
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Drinks </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Drinks </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Pasta </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Pasta </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
-                                <Text style={styles.categoriesName}> Pizza </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"7"} />
+                                    <Text style={styles.categoriesName}> Pizza </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
                     </HStack>
 
@@ -65,23 +73,25 @@ export default function MenuScreen() {
 
                         <ScrollView horizontal={true}>
                             <HStack>
-                            {dishes.map((item) => (
-                                <Center style={styles.dishContainer} >
-                                    <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
-                                        <Image resizeMode="cover" source={{ uri: "https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0" }}
-                                            alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
-                                        <Text style={styles.dishTitle} numberOfLines={1}>{item.dishName}</Text>
-                                        <Text style={styles.dishDescription} numberOfLines={2}>{item.description}</Text>
-                                        <HStack style={styles.dishAdditionalInfo}>
-                                            <HStack alignItems={'center'}>
-                                                <GradientIcon name="clock-time-five-outline" size={15} />
-                                                <Text style={styles.dishTime}>{item.preparationTime}</Text>
-                                            </HStack>
-                                            <VerticalGradientText text={item.price} style={styles.dishPrice} />
-                                        </HStack>
-                                    </VStack>
-                                </Center>
-                            ))}
+                                {dishes.map((item) => (
+                                    <TouchableOpacity>
+                                        <Center style={styles.dishContainer} >
+                                            <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
+                                                <Image resizeMode="cover" source={{ uri: "https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0" }}
+                                                    alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
+                                                <Text style={styles.dishTitle} numberOfLines={1}>{item.dishName}</Text>
+                                                <Text style={styles.dishDescription} numberOfLines={2}>{item.description}</Text>
+                                                <HStack style={styles.dishAdditionalInfo}>
+                                                    <HStack alignItems={'center'}>
+                                                        <GradientIcon name="clock-time-five-outline" size={15} />
+                                                        <Text style={styles.dishTime}>{item.preparationTime}</Text>
+                                                    </HStack>
+                                                    <VerticalGradientText text={item.price} style={styles.dishPrice} />
+                                                </HStack>
+                                            </VStack>
+                                        </Center>
+                                    </TouchableOpacity>
+                                ))}
                             </HStack>
                         </ScrollView>
                     </VStack>
@@ -95,23 +105,25 @@ export default function MenuScreen() {
 
                         <ScrollView horizontal={true}>
                             <HStack>
-                            {dishes.map((item) => (
-                                <Center style={styles.dishContainer} >
-                                    <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
-                                        <Image resizeMode="cover" source={{ uri: "https://www.gastrolabweb.com/u/fotografias/m/2021/6/15/f685x385-14776_52469_2859.jpg" }}
-                                            alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
-                                        <Text style={styles.dishTitle} numberOfLines={1}>{item.dishName}</Text>
-                                        <Text style={styles.dishDescription} numberOfLines={2}>{item.description}</Text>
-                                        <HStack style={styles.dishAdditionalInfo}>
-                                            <HStack alignItems={'center'}>
-                                                <GradientIcon name="clock-time-five-outline" size={15} />
-                                                <Text style={styles.dishTime}>{item.preparationTime}</Text>
-                                            </HStack>
-                                            <VerticalGradientText text={item.price} style={styles.dishPrice} />
-                                        </HStack>
-                                    </VStack>
-                                </Center>
-                            ))}
+                                {dishes.map((item) => (
+                                    <TouchableOpacity>
+                                        <Center style={styles.dishContainer} >
+                                            <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
+                                                <Image resizeMode="cover" source={{ uri: "https://www.gastrolabweb.com/u/fotografias/m/2021/6/15/f685x385-14776_52469_2859.jpg" }}
+                                                    alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
+                                                <Text style={styles.dishTitle} numberOfLines={1}>{item.dishName}</Text>
+                                                <Text style={styles.dishDescription} numberOfLines={2}>{item.description}</Text>
+                                                <HStack style={styles.dishAdditionalInfo}>
+                                                    <HStack alignItems={'center'}>
+                                                        <GradientIcon name="clock-time-five-outline" size={15} />
+                                                        <Text style={styles.dishTime}>{item.preparationTime}</Text>
+                                                    </HStack>
+                                                    <VerticalGradientText text={item.price} style={styles.dishPrice} />
+                                                </HStack>
+                                            </VStack>
+                                        </Center>
+                                    </TouchableOpacity>
+                                ))}
                             </HStack>
                         </ScrollView>
                     </VStack>
@@ -123,9 +135,9 @@ export default function MenuScreen() {
 
             </ScrollView >
 
-            <Pressable onPress={(onOpen)}>
+            <TouchableOpacity onPress={(onOpen)}>
                 <VerticalGradientButton text="Add dish to menu" style={styles.addButton} />
-            </Pressable>
+            </TouchableOpacity>
         </>
     );
 }
@@ -223,13 +235,13 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     dishTime: {
-        color: theme.text_icons, 
-        fontSize: 10, 
-        fontWeight: '400', 
+        color: theme.text_icons,
+        fontSize: 10,
+        fontWeight: '400',
         marginLeft: 2
     },
     dishPrice: {
-        fontSize: 17, 
+        fontSize: 17,
         fontWeight: '500'
     },
     waiterName: {

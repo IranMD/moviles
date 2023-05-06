@@ -30,6 +30,7 @@ import MenuScreen from "./components/MenuScreen";
 import AddDishScreen from "./components/AddDishScreen";
 import EditDishScreen from "./components/EditDishScreen";
 import MenuCategoriesScreen from "./components/MenuCategoriesScreen";
+import TableScreen from "./components/TableScreen";
 
 
 // extend the theme
@@ -59,7 +60,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <MenuCategoriesScreen/>
+        <TableScreen/>
       </View>
     </NativeBaseProvider>
   );

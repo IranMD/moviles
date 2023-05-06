@@ -14,7 +14,6 @@ import DeleteGradientButton from './DeleteGradientButton';
 
 export default function MenuCategoriesScreen() {
 
-    const { isOpen, onOpen, onClose } = useDisclose();
     const dishes = [
         { id: 1, dishName: 'Meatball and Spaghetti', description: 'The perfect hearty spaghetti bake with boerewors meatballs and a burst of flavour from the chakalaka.', preparationTime: '20 min', price: '$150.00mxn', picture: 'https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0' },
         { id: 2, dishName: 'Meatball and Spaghetti', description: 'The perfect hearty spaghetti bake with boerewors meatballs and a burst of flavour from the chakalaka.', preparationTime: '20 min', price: '$150.00mxn', picture: 'https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0' },
@@ -32,31 +31,32 @@ export default function MenuCategoriesScreen() {
 
                 <HStack style={styles.searchContainer}>
                     <TextInput placeholder='Search' placeholderTextColor={theme.text_icons} style={styles.searchInput}></TextInput>
-                    <GradientIcon name="magnify" size={27} />
+                    <TouchableOpacity>
+                        <GradientIcon name="magnify" size={27} />
+                    </TouchableOpacity>
                 </HStack>
 
-    
-                        
-                               <FlatList numColumns={2} data={dishes} renderItem={({item}) => {
-                                return <Center style={styles.dishContainer} >
-                                    <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
-                                        <Image resizeMode="cover" source={{ uri: "https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0" }}
-                                            alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
-                                        <Text style={styles.dishTitle} numberOfLines={2}>{item.dishName}</Text>
-                                        <Text style={styles.dishDescription} numberOfLines={3}>{item.description}</Text>
-                                        <HStack style={styles.dishAdditionalInfo}>
-                                            <HStack alignItems={'center'}>
-                                                <GradientIcon name="clock-time-five-outline" size={15} />
-                                                <Text style={styles.dishTime}>{item.preparationTime}</Text>
-                                            </HStack>
-                                            <VerticalGradientText text={item.price} style={styles.dishPrice} />
-                                        </HStack>
-                                    </VStack>
-                                </Center>}}/>
-                               
-                            
 
-          
+
+                <FlatList numColumns={2} data={dishes} renderItem={({ item }) => {
+                    return <TouchableOpacity>
+                        <Center style={styles.dishContainer} >
+                            <VStack justifyContent={'flex-start'} alignContent={'flex-start'} alignItems={'flex-start'} height={'100%'}>
+                                <Image resizeMode="cover" source={{ uri: "https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0" }}
+                                    alt="Icon of Menu" size={85} borderTopRadius={10} width={180} height={100} />
+                                <Text style={styles.dishTitle} numberOfLines={2}>{item.dishName}</Text>
+                                <Text style={styles.dishDescription} numberOfLines={3}>{item.description}</Text>
+                                <HStack style={styles.dishAdditionalInfo}>
+                                    <HStack alignItems={'center'}>
+                                        <GradientIcon name="clock-time-five-outline" size={15} />
+                                        <Text style={styles.dishTime}>{item.preparationTime}</Text>
+                                    </HStack>
+                                    <VerticalGradientText text={item.price} style={styles.dishPrice} />
+                                </HStack>
+                            </VStack>
+                        </Center>
+                    </TouchableOpacity>
+                }} />
 
             </View>
         </>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         width: '90%'
     },
     dishContainer: {
-        width: '47%',
+        width: 163,
         height: 210,
         marginTop: 10,
         backgroundColor: theme.cards_background,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '900',
         paddingLeft: 5,
-        paddingRight:1
+        paddingRight: 3
     },
     dishDescription: {
         color: theme.text_icons,

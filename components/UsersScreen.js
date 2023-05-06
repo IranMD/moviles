@@ -15,8 +15,8 @@ import DeleteGradientButton from './DeleteGradientButton';
 export default function UsersScreen() {
 
     const { isOpen, onOpen, onClose } = useDisclose();
-  
-    
+
+
     <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
     const users = [
         { id: '1', name: 'Luis Fernando Jasso Frausto', job: 'Head Waiter', contact: 'luis.jasso@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
@@ -31,17 +31,21 @@ export default function UsersScreen() {
                     <VerticalGradientText text="Users" style={styles.titleScreen} />
 
                     <HStack style={styles.categoriesRow}>
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Text style={styles.categoriesName}> Waiters </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Text style={styles.categoriesName}> Waiters </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
-                        <Center style={styles.categoriesContainer}>
-                            <HStack alignItems={'center'}>
-                                <Text style={styles.categoriesName}> Chefs </Text>
-                            </HStack>
-                        </Center>
+                        <TouchableOpacity>
+                            <Center style={styles.categoriesContainer}>
+                                <HStack alignItems={'center'}>
+                                    <Text style={styles.categoriesName}> Chefs </Text>
+                                </HStack>
+                            </Center>
+                        </TouchableOpacity>
 
 
 
@@ -51,7 +55,7 @@ export default function UsersScreen() {
                         <Text style={styles.sectionTitle}>Waiters Accounts</Text>
 
                         {users.map((item) => (
-                            <Pressable onPress={(onOpen)} >
+                            <TouchableOpacity onPress={(onOpen)} >
                                 <Center style={styles.userContainer}>
                                     <HStack alignItems={'center'}>
                                         <Avatar source={{
@@ -71,7 +75,7 @@ export default function UsersScreen() {
                                     </HStack>
 
                                 </Center>
-                            </Pressable>
+                            </TouchableOpacity>
                         ))}
 
                     </VStack>
@@ -82,9 +86,9 @@ export default function UsersScreen() {
 
             </ScrollView>
 
-            <Pressable onPress={(onOpen)}>
+            <TouchableOpacity onPress={(onOpen)}>
                 <VerticalGradientButton text="Add new user" style={styles.addButton} />
-            </Pressable>
+            </TouchableOpacity>
 
 
             <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
@@ -92,9 +96,11 @@ export default function UsersScreen() {
 
                     <VerticalGradientText text={'Add User'} style={styles.actionSheetTitle} />
 
-                    <Box style={styles.boxImage}>
-                        <GradientIcon name='file-image-plus-outline' size={45} />
-                    </Box>
+                    <TouchableOpacity>
+                        <Box style={styles.boxImage}>
+                            <GradientIcon name='file-image-plus-outline' size={45} />
+                        </Box>
+                    </TouchableOpacity>
 
                     <TextInput
                         placeholder='Name'
@@ -127,15 +133,20 @@ export default function UsersScreen() {
                         </Box>
                     </HStack>
 
-                    <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
-                    <DeleteGradientButton text={'Delete'} style={styles.saveButton}/>
+                    <TouchableOpacity>
+                        <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <DeleteGradientButton text={'Delete'} style={styles.saveButton} />
+                    </TouchableOpacity>
 
                 </Actionsheet.Content>
             </Actionsheet>
 
 
 
-            
+
 
 
 
@@ -281,7 +292,7 @@ const styles = StyleSheet.create({
     },
     saveButton: {
         color: theme.text_icons,
-        width: '100%',
+        width: 320,
         height: 30,
         borderRadius: 25,
         padding: 2,

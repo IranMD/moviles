@@ -36,9 +36,9 @@ export default function Login() {
                 />
                 </HStack>
 
-                <StatusBar style='auto'></StatusBar>
+                
                 <TouchableOpacity style={styles.containerButton}>
-                    <GradientButton text="Log In" style={styles.text} />
+                    <GradientButton text="Log In" style={styles.button} />
                 </TouchableOpacity>
             </View>
         
@@ -59,16 +59,15 @@ container: {
         fontSize: 40,
         fontWeight: '900'
     },
-    text: {
+    button: {
         fontSize: 14,
         color: theme.text_icons,
-        width: '80%',
         height: 30,
         borderRadius: 25,
-        padding: 2,
-        alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        width: 230
     },
     subTitle: {
         fontSize: 25,
@@ -77,7 +76,6 @@ container: {
         fontWeight: '500'
     },
     textInput: {
-
         width: '70%',
         padding: 10,
         paddingStart: 10,
