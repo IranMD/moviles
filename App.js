@@ -28,6 +28,8 @@ import BackordersScreen from "./components/BackordersScreen";
 import UsersScreen from "./components/UsersScreen";
 import MenuScreen from "./components/MenuScreen";
 import AddDishScreen from "./components/AddDishScreen";
+import EditDishScreen from "./components/EditDishScreen";
+import MenuCategoriesScreen from "./components/MenuCategoriesScreen";
 
 
 // extend the theme
@@ -57,7 +59,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <AddDishScreen/>
+        <MenuCategoriesScreen/>
       </View>
     </NativeBaseProvider>
   );

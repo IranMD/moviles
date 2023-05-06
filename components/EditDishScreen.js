@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, Image, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, Actionsheet, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
 import React from "react";
 import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
@@ -13,11 +13,12 @@ import GradientIcon from './GradientIcon';
 import DeleteGradientButton from './DeleteGradientButton';
 
 export default function AddDishScreen() {
+    const { isOpen, onOpen, onClose } = useDisclose();
 
     return (
         <>
             <View style={styles.container}>
-                <VerticalGradientText text="Add Dish to Menu" style={styles.titleScreen} />
+                <VerticalGradientText text="Edit Dish Information" style={styles.titleScreen} />
                 <TextInput
                     placeholder='Dish Name'
                     placeholderTextColor={theme.text_icons}
@@ -44,7 +45,6 @@ export default function AddDishScreen() {
                     </Box>
                 </HStack>
 
-
                 <TextInput
                     placeholder='Dish Description...'
                     placeholderTextColor={theme.text_icons}
@@ -54,15 +54,41 @@ export default function AddDishScreen() {
                 <Center style={styles.imageContainer}>
                     <GradientIcon name='file-image-plus-outline' size={45} />
                 </Center>
-
-
-
-
             </View >
 
-            <Pressable >
-                <VerticalGradientButton text="Save" style={styles.saveButton} />
-            </Pressable>
+            <HStack style={styles.buttonsContainer}>
+                <Pressable >
+                    <VerticalGradientButton text="Save Changes" style={styles.actionButton} />
+                </Pressable>
+
+                <Pressable onPress={(onOpen)}>
+                    <DeleteGradientButton text="Delete Dish" style={styles.actionButton} />
+                </Pressable>
+            </HStack>
+
+
+            <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
+                <Actionsheet.Content style={styles.actionSheet}>
+
+                    <VerticalGradientText text={'Delete Dish?'} style={styles.actionSheetTitle} />
+
+                    <HStack style={styles.containerActionButtons}>
+                        <Pressable >
+                            <VerticalGradientButton text="Cancel" style={styles.actionButton} />
+                        </Pressable>
+
+                        <Pressable onPress={(onOpen)}>
+                            <DeleteGradientButton text="Yes, delete" style={styles.actionButton} />
+                        </Pressable>
+
+
+
+                    </HStack>
+
+
+
+                </Actionsheet.Content>
+            </Actionsheet>
         </>
     );
 }
@@ -145,15 +171,40 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         marginBottom: 15,
     },
-    saveButton: {
+    buttonsContainer: {
+        width: '100%',
+        justifyContent: 'space-between',
+        paddingLeft: 7,
+        paddingRight: 7,
+    },
+    actionButton: {
         color: theme.text_icons,
-        width: '90%',
         height: 30,
         borderRadius: 25,
-        marginLeft: 20,
         marginBottom: 15,
         textAlign: 'center',
-        paddingTop: 2,
+        width: 170,
+        textAlignVertical: 'center'
     },
+    actionSheet: {
+        borderTopRadius: 20,
+        backgroundColor: theme.cards_background,
+        paddingTop: 20,
+        paddingBottom: 7,
+        width: '100%',
+    },
+    actionSheetTitle: {
+        fontSize: 26,
+        fontWeight: '500',
+        paddingLeft: 20,
+        marginBottom: 7
+    },
+    containerActionButtons: {
+        justifyContent: 'space-between',
+        width: '100%',
+        borderTopColor: theme.gray_borderColor,
+        borderTopWidth: 1,
+        paddingTop: 15
+    }
 
 })
