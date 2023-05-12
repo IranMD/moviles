@@ -31,6 +31,9 @@ import AddDishScreen from "./components/AddDishScreen";
 import EditDishScreen from "./components/EditDishScreen";
 import MenuCategoriesScreen from "./components/MenuCategoriesScreen";
 import TableScreen from "./components/TableScreen";
+import HomePageWaiter from "./components/HomePageWaiter";
+import DetailsTableScreen from "./components/DetailsTableScreen";
+import MealDetail from "./components/MealDetail";
 
 
 // extend the theme
@@ -60,7 +63,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <TableScreen/>
+        <UsersScreen/>
       </View>
     </NativeBaseProvider>
   );
@@ -70,6 +73,5 @@ const styles = StyleSheet.create({
   mainContainer: {
       flex: 1,
       backgroundColor: theme.background_color,
-      
   }
 })
