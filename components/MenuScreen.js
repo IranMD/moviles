@@ -1,20 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
+import { Center, HStack, VStack, Image } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
-import GradientDashboard from './GradientDashboard';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
-import GradientButton from './GradientButton';
-import DisableGradientButton from './DisableGradientButton';
 import GradientIcon from './GradientIcon';
-import DeleteGradientButton from './DeleteGradientButton';
+
 
 export default function MenuScreen() {
-
-    const { isOpen, onOpen, onClose } = useDisclose();
     const dishes = [
         { key: 1, dishName: 'Meatball and Spaghetti', description: 'The perfect hearty spaghetti bake with boerewors meatballs and a burst of flavour from the chakalaka.', preparationTime: '20 min', price: '$150.00mxn', picture: 'https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0' },
         { key: 2, dishName: 'Meatball and Spaghetti', description: 'The perfect hearty spaghetti bake with boerewors meatballs and a burst of flavour from the chakalaka.', preparationTime: '20 min', price: '$150.00mxn', picture: 'https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0' },
@@ -24,7 +17,13 @@ export default function MenuScreen() {
         <>
             <ScrollView>
                 <View style={styles.container}>
-                    <VerticalGradientText text="Menu" style={styles.titleScreen} />
+                    <HStack alignItems={'center'} width={'100%'}>
+                        <TouchableOpacity>
+                            <GradientIcon name="arrow-left" size={30} />
+                        </TouchableOpacity>
+                        <VerticalGradientText text="Menu" style={styles.titleScreen} />
+                    </HStack>
+
 
                     <HStack style={styles.searchContainer}>
                         <TextInput placeholder='Search' placeholderTextColor={theme.text_icons} style={styles.searchInput}></TextInput>
@@ -135,7 +134,7 @@ export default function MenuScreen() {
 
             </ScrollView >
 
-            <TouchableOpacity onPress={(onOpen)}>
+            <TouchableOpacity>
                 <VerticalGradientButton text="Add dish to menu" style={styles.addButton} />
             </TouchableOpacity>
         </>
@@ -154,6 +153,7 @@ const styles = StyleSheet.create({
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
+        paddingLeft: '50%'
     },
     categoriesContainer: {
         backgroundColor: theme.cards_background,

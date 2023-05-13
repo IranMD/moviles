@@ -34,6 +34,8 @@ import TableScreen from "./components/TableScreen";
 import HomePageWaiter from "./components/HomePageWaiter";
 import DetailsTableScreen from "./components/DetailsTableScreen";
 import MealDetail from "./components/MealDetail";
+import HomePageChef from "./components/HomePageChef";
+import SignIn from "./components/SignIn";
 
 
 // extend the theme
@@ -63,7 +65,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <UsersScreen/>
+        <SignIn/>
       </View>
     </NativeBaseProvider>
   );

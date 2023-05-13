@@ -1,18 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden } from 'native-base';
+import { Center, HStack, VStack, Image, useDisclose } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
-import GradientDashboard from './GradientDashboard';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
-import GradientButton from './GradientButton';
 import DisableGradientButton from './DisableGradientButton';
+import GradientIcon from './GradientIcon';
 
 export default function BackordersScreen() {
 
-    const { isOpen, onOpen, onClose } = useDisclose();
     const orders = [
         { id: '1', dish: 'Meatball and Spaghetti', table: '1', waiter: 'Don Wicho', status: 'not delivered' },
         { id: '2', dish: 'Pizza', table: '2', waiter: 'Doña Iran', status: 'delivered' },
@@ -23,7 +20,13 @@ export default function BackordersScreen() {
         <>
             <ScrollView>
                 <View style={styles.container}>
-                    <VerticalGradientText text="Pending Orders" style={styles.titleScreen} />
+
+                    <HStack alignItems={'center'} width={'100%'}>
+                        <TouchableOpacity>
+                            <GradientIcon name="arrow-left" size={30} />
+                        </TouchableOpacity>
+                        <VerticalGradientText text="Pending Orders" style={styles.titleScreen} />
+                    </HStack>
 
                     <HStack style={styles.categoriesRow}>
                         <TouchableOpacity>
@@ -56,12 +59,10 @@ export default function BackordersScreen() {
                     </HStack>
 
                     <VStack style={styles.sectionContainer}>
+
                         <Text style={styles.sectionTitle}>Pending Orders</Text>
 
-
-
                         {orders.map((item) => (
-
                             <Center style={styles.orderContainer}>
                                 <HStack>
                                     <Image resizeMode="contain" source={{ uri: "https://th.bing.com/th/id/R.5cb6132dc72fab1d1aabcbbc8dd9d21f?rik=nIlC7fv1F89I8Q&riu=http%3a%2f%2fmysticislandscasino.com%2fwp-content%2fuploads%2fClassic-Italian-Meatballs.jpg&ehk=%2b%2b52DpK%2blJoCVwj2uJe8GxVY8oq5hj38qyxWKWX0qfE%3d&risl=&pid=ImgRaw&r=0" }}
@@ -92,6 +93,7 @@ export default function BackordersScreen() {
 
 
                     <VStack style={styles.sectionContainer}>
+
                         <Text style={styles.sectionTitle}>Delivered Orders</Text>
 
                         <Center style={styles.orderContainer}>
@@ -114,18 +116,17 @@ export default function BackordersScreen() {
                                                 <DisableGradientButton text="Delivered" style={styles.deliverButton} />
                                             </TouchableOpacity>
                                         </HStack>
+
                                     </HStack>
                                 </VStack>
+
                             </HStack>
                         </Center>
 
                     </VStack>
 
-
-
                 </View>
-
-
+                
             </ScrollView>
             <VerticalGradientButton text="Total pending orders: 2" style={styles.totalButton} />
 
@@ -147,6 +148,7 @@ const styles = StyleSheet.create({
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
+        paddingLeft: '25%'
     },
     categoriesContainer: {
         backgroundColor: theme.cards_background,

@@ -28,7 +28,13 @@ export default function UsersScreen() {
         <>
             <ScrollView>
                 <View style={styles.container}>
-                    <VerticalGradientText text="Users" style={styles.titleScreen} />
+                    <HStack alignItems={'center'} width={'100%'}>
+                        <TouchableOpacity>
+                            <GradientIcon name="arrow-left" size={30} />
+                        </TouchableOpacity>
+                        <VerticalGradientText text="Users" style={styles.titleScreen} />
+                    </HStack>
+
 
                     <HStack style={styles.categoriesRow}>
                         <TouchableOpacity>
@@ -166,6 +172,7 @@ const styles = StyleSheet.create({
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
+        paddingLeft: '50%', 
     },
     categoriesContainer: {
         backgroundColor: theme.cards_background,

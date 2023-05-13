@@ -32,13 +32,14 @@ export default function Login() {
                     <TextInput
                     placeholder='Password'
                     placeholderTextColor={theme.text_icons}
+                    secureTextEntry={true} 
                     style={styles.textInput}
                 />
                 </HStack>
 
                 
                 <TouchableOpacity style={styles.containerButton}>
-                    <GradientButton text="Log In" style={styles.button} />
+                    <GradientButton text="Log in" style={styles.button} />
                 </TouchableOpacity>
             </View>
         

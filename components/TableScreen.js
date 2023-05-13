@@ -29,7 +29,12 @@ export default function TableScreen() {
     return (
         <>
             <View style={styles.container}>
-                <VerticalGradientText text="Tables" style={styles.titleScreen} />
+            <HStack alignItems={'center'} width={'100%'} marginBottom={5}>
+                    <TouchableOpacity>
+                        <GradientIcon name="arrow-left" size={30} />
+                    </TouchableOpacity>
+                    <VerticalGradientText text="Tables" style={styles.titleScreen} />
+                </HStack>
 
                 <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
                     <Actionsheet.Content style={styles.actionSheet}>
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
-        marginBottom: 20
+        paddingLeft: '47%'
     },
     tableContainer: {
         backgroundColor: theme.cards_background,

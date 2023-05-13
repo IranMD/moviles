@@ -1,14 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, Actionsheet, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
+import { Center, HStack, Box, Actionsheet, Select, useDisclose } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
-import GradientDashboard from './GradientDashboard';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
-import GradientButton from './GradientButton';
-import DisableGradientButton from './DisableGradientButton';
 import GradientIcon from './GradientIcon';
 import DeleteGradientButton from './DeleteGradientButton';
 
@@ -18,7 +13,14 @@ export default function AddDishScreen() {
     return (
         <>
             <View style={styles.container}>
-                <VerticalGradientText text="Edit Dish Information" style={styles.titleScreen} />
+
+                <HStack alignItems={'center'} width={'100%'} marginBottom={25}>
+                    <TouchableOpacity>
+                        <GradientIcon name="arrow-left" size={30} />
+                    </TouchableOpacity>
+                    <VerticalGradientText text="Edit Dish Information" style={styles.titleScreen} />
+                </HStack>
+
                 <TextInput
                     placeholder='Dish Name'
                     placeholderTextColor={theme.text_icons}
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     titleScreen: {
         fontSize: 23,
         fontWeight: '700',
-        marginBottom: 25
+        paddingLeft: '15%'
     },
     textInput: {
         width: '100%',
@@ -190,8 +192,8 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '500',
         paddingLeft: 20,
-        marginBottom: 7, 
-        textAlign: 'left',  
+        marginBottom: 7,
+        textAlign: 'left',
         width: 370
     },
     containerActionButtons: {
