@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, AlertDialog, Text, Button} from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import {View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
 import GradientDashboard from './GradientDashboard';
@@ -15,10 +15,9 @@ import GradientBorder2 from './GradientBorder2';
 import GradientBorder from './GradientBorder';
 
 export default function MealDetail() {
-
-
-
-
+    const [isOpenAdd, setIsOpenAdd] = React.useState(false);
+    const onCloseAdd = () => setIsOpenAdd(false);
+    const cancelRef = React.useRef(null);
     return (
         <>
             <ScrollView>
@@ -56,8 +55,8 @@ export default function MealDetail() {
 
             <HStack height={9} justifyContent={'space-between'} marginBottom={7} marginLeft={7} marginRight={7} style={styles.buttonsContainer}>
                 <GradientBorder2 style={styles.quantityContainer} />
-                <TouchableOpacity>
-                    <VerticalGradientButton text='Add' style={styles.addButton} />
+                <TouchableOpacity onPress={() => setIsOpenAdd(!isOpenAdd)}>
+                    <VerticalGradientButton text='Add' style={styles.addButton}/>
                 </TouchableOpacity>
             </HStack>
 
@@ -72,16 +71,31 @@ export default function MealDetail() {
             </TouchableOpacity>
             </HStack>
 
-
-
-
-
-
-
-
-
-
-
+            <Center>
+                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenAdd} onClose={onCloseAdd}>
+                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+                        <AlertDialog.CloseButton />
+                        <AlertDialog.Header style={styles.colorAlertDialog}>
+                            <VerticalGradientText text="Add" style={styles.headerAlerDialog} />
+                        </AlertDialog.Header>
+                        <AlertDialog.Body style={styles.colorAlertDialog}>
+                            <Text style={styles.bodyAlerDialog}>
+                                Add to order?
+                            </Text>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer style={styles.colorAlertDialog}>
+                            <Button.Group space={2}>
+                                <TouchableOpacity onPress={onCloseAdd}>
+                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <VerticalGradientButton text="Yes, Add" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                            </Button.Group>
+                        </AlertDialog.Footer>
+                    </AlertDialog.Content>
+                </AlertDialog>
+            </Center>
         </>
     );
 }
@@ -165,7 +179,8 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         fontWeight: '700',
         fontSize: 17
-    }, priceCont: {
+    }, 
+    priceCont: {
         margin: 5,
         paddingHorizontal: 3,
         textAlign: "center",
@@ -196,6 +211,26 @@ const styles = StyleSheet.create({
         color: theme.text_icons,
         fontSize: 20, 
         fontWeight: '700'
-
-    }
+    },
+    colorAlertDialog: {
+        backgroundColor: theme.cards_background,
+        borderColor: 'transparent'
+    },
+    headerAlerDialog: {
+        fontSize: 25,
+        fontWeight: '700',
+    },
+    bodyAlerDialog: {
+        color: theme.text_icons,
+        fontSize: 22,
+        fontWeight: '300', 
+    },    
+    alertButtons: {
+        color: theme.text_icons,
+        height: 30,
+        borderRadius: 25,
+        textAlign: 'center',
+        textAlignVertical: 'center', 
+        width: 80
+    },
 })

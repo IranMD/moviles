@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, AlertDialog, Text, Button } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import GradientText from './GradientText';
 import GradientButton from './GradientButton';
 import GradientDashboard from './GradientDashboard';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import theme from './theme';
-import Image1 from '../assets/cat1.png';
+import DeleteGradientButton from './DeleteGradientButton';
+import VerticalGradientText from './VerticalGradientText';
+import VerticalGradientButton from './VerticalGradientButton';
 
 export default function Dashboard() {
   function SvgTop() {
@@ -57,113 +59,142 @@ export default function Dashboard() {
   }
 
   const { isOpen, onOpen, onClose } = useDisclose();
+  const [isOpenLogout, setIsOpenLogout] = React.useState(false);
+  const onCloseLogout = () => setIsOpenLogout(false);
+  const cancelRef = React.useRef(null);
 
   return (
-    <View style={styles.container}>
-      <HStack justifyContent={'center'} alignItems={'center'} marginTop={7} marginBottom={7}>
-        <SvgTop />
-        <GradientText text='Dashboard' style={styles.titleScreen}></GradientText>
+    <>
+      <View style={styles.container}>
+        <HStack justifyContent={'center'} alignItems={'center'} marginTop={7} marginBottom={7}>
+          <SvgTop />
+          <GradientText text='Dashboard' style={styles.titleScreen}></GradientText>
 
-        <TouchableOpacity onPress={(onOpen)}>
-          <Avatar source={{
-            uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-          }} onPress={(onOpen)}></Avatar>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={(onOpen)}>
+            <Avatar source={{
+              uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            }} onPress={(onOpen)}></Avatar>
+          </TouchableOpacity>
 
-        <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
-          <Actionsheet.Content style={styles.actionSheet}>
-            <HStack style={styles.rowActionSheet}>
-              <Avatar source={{
-                uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-              }} size={100} />
-              <VStack>
-                <GradientText text={'Iran Mendoza De La Torre'} style={styles.nameText} />
-                <Text style={styles.jobText}>Manager</Text>
-              </VStack>
-            </HStack>
+          <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
+            <Actionsheet.Content style={styles.actionSheet}>
+              <HStack style={styles.rowActionSheet}>
+                <Avatar source={{
+                  uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                }} size={100} />
+                <VStack>
+                  <GradientText text={'Iran Mendoza De La Torre'} style={styles.nameText} />
+                  <Text style={styles.jobText}>Manager</Text>
+                </VStack>
+              </HStack>
 
-            <Text style={styles.dateText}>Date of hire: 04/03/2023</Text>
+              <Text style={styles.dateText}>Date of hire: 04/03/2023</Text>
 
+              <TouchableOpacity onPress={() => setIsOpenLogout(!isOpenLogout)}>
+                <GradientButton text={'Logout'} style={styles.logOutButton} />
+              </TouchableOpacity>
+
+            </Actionsheet.Content>
+          </Actionsheet>
+        </HStack>
+
+
+        <GradientDashboard />
+
+        <VStack width={'100%'} paddingLeft={5} paddingRight={5} paddingTop={3}>
+          <HStack justifyContent={'space-between'}>
             <TouchableOpacity>
-              <GradientButton text={'Log Out'} style={styles.logOutButton} />
+              <Center style={styles.cardIcon}>
+                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmeseros.png?alt=media&token=" }} alt="Icon of Waiters" size={"20"} />
+                <HStack style={styles.textRow}>
+                  <Text style={styles.textCard}>Waiters</Text>
+                  <Text style={styles.numbersCard}>10</Text>
+                </HStack>
+                <Box style={styles.boxProgress}>
+                  <Progress bg={theme.background_color} _filledTrack={{
+                    bg: theme.primary_color
+                  }} value={75} mx="1" h={2} />
+                </Box>
+              </Center>
             </TouchableOpacity>
 
-          </Actionsheet.Content>
-        </Actionsheet>
-      </HStack>
+            <TouchableOpacity>
+              <Center style={styles.cardIcon}>
+                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"20"} />
+                <HStack style={styles.textRow}>
+                  <Text style={styles.textCard}>Menu</Text>
+                  <Text style={styles.numbersCard}>20</Text>
+                </HStack>
+                <Box style={styles.boxProgress}>
+                  <Progress bg={theme.background_color} _filledTrack={{
+                    bg: theme.primary_color
+                  }} value={90} mx="1" h={2} />
+                </Box>
+              </Center>
+            </TouchableOpacity>
+          </HStack>
+
+          <HStack justifyContent={'space-between'}>
+            <TouchableOpacity>
+              <Center style={styles.cardIcon}>
+                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fpedidos.png?alt=media&token=" }} alt="Icon of Back Orders" size={"20"} />
+                <HStack style={styles.textRow}>
+                  <Text style={styles.textCard}>Backorders</Text>
+                  <Text style={styles.numbersCard}>3</Text>
+                </HStack>
+                <Box style={styles.boxProgress}>
+                  <Progress bg={theme.background_color} _filledTrack={{
+                    bg: theme.primary_color
+                  }} value={30} mx="1" h={2} />
+                </Box>
+              </Center>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Center style={styles.cardIcon}>
+                <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmesas.png?alt=media&token=" }} alt="Icon of Tables" size={"24"} />
+                <HStack style={styles.textRow}>
+                  <Text style={styles.textCard}>Tables</Text>
+                  <Text style={styles.numbersCard}>10</Text>
+                </HStack>
+                <Box style={styles.boxProgress}>
+                  <Progress bg={theme.background_color} _filledTrack={{
+                    bg: theme.primary_color
+                  }} value={70} mx="1" h={2} />
+                </Box>
+              </Center>
+            </TouchableOpacity>
+          </HStack>
+        </VStack>
+      </View >
 
 
-      <GradientDashboard />
-
-      <VStack width={'100%'} paddingLeft={5} paddingRight={5} paddingTop={3}>
-        <HStack justifyContent={'space-between'}>
-          <TouchableOpacity>
-            <Center style={styles.cardIcon}>
-              <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmeseros.png?alt=media&token=" }} alt="Icon of Waiters" size={"20"} />
-              <HStack style={styles.textRow}>
-                <Text style={styles.textCard}>Waiters</Text>
-                <Text style={styles.numbersCard}>10</Text>
-              </HStack>
-              <Box style={styles.boxProgress}>
-                <Progress bg={theme.background_color} _filledTrack={{
-                  bg: theme.primary_color
-                }} value={75} mx="1" h={2} />
-              </Box>
-            </Center>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Center style={styles.cardIcon}>
-              <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=" }} alt="Icon of Menu" size={"20"} />
-              <HStack style={styles.textRow}>
-                <Text style={styles.textCard}>Menu</Text>
-                <Text style={styles.numbersCard}>20</Text>
-              </HStack>
-              <Box style={styles.boxProgress}>
-                <Progress bg={theme.background_color} _filledTrack={{
-                  bg: theme.primary_color
-                }} value={90} mx="1" h={2} />
-              </Box>
-            </Center>
-          </TouchableOpacity>
-        </HStack>
-
-        <HStack justifyContent={'space-between'}>
-          <TouchableOpacity>
-            <Center style={styles.cardIcon}>
-              <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fpedidos.png?alt=media&token=" }} alt="Icon of Back Orders" size={"20"} />
-              <HStack style={styles.textRow}>
-                <Text style={styles.textCard}>Backorders</Text>
-                <Text style={styles.numbersCard}>3</Text>
-              </HStack>
-              <Box style={styles.boxProgress}>
-                <Progress bg={theme.background_color} _filledTrack={{
-                  bg: theme.primary_color
-                }} value={30} mx="1" h={2} />
-              </Box>
-            </Center>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Center style={styles.cardIcon}>
-              <Image resizeMode="contain" source={{ uri: "https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmesas.png?alt=media&token=" }} alt="Icon of Tables" size={"24"} />
-              <HStack style={styles.textRow}>
-                <Text style={styles.textCard}>Tables</Text>
-                <Text style={styles.numbersCard}>10</Text>
-              </HStack>
-              <Box style={styles.boxProgress}>
-                <Progress bg={theme.background_color} _filledTrack={{
-                  bg: theme.primary_color
-                }} value={70} mx="1" h={2} />
-              </Box>
-            </Center>
-          </TouchableOpacity>
-        </HStack>
-      </VStack>
-
-
-    </View >
-
+      <Center>
+        <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenLogout} onClose={onCloseLogout}>
+          <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+            <AlertDialog.CloseButton />
+            <AlertDialog.Header style={styles.colorAlertDialog}>
+              <VerticalGradientText text="Logout" style={styles.headerAlerDialog} />
+            </AlertDialog.Header>
+            <AlertDialog.Body style={styles.colorAlertDialog}>
+              <Text style={styles.bodyAlerDialog}>
+                You will be returned to the login screen
+              </Text>
+            </AlertDialog.Body>
+            <AlertDialog.Footer style={styles.colorAlertDialog}>
+              <Button.Group space={2}>
+                <TouchableOpacity onPress={onCloseLogout}>
+                  <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <VerticalGradientButton text="Logout" style={styles.alertButtons} />
+                </TouchableOpacity>
+              </Button.Group>
+            </AlertDialog.Footer>
+          </AlertDialog.Content>
+        </AlertDialog>
+      </Center>
+    </>
   );
 }
 
@@ -262,5 +293,26 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     width: '130%',
     paddingBottom: 17
-  }
+  },
+  colorAlertDialog: {
+    backgroundColor: theme.cards_background,
+    borderColor: 'transparent'
+  },
+  headerAlerDialog: {
+    fontSize: 25,
+    fontWeight: '700',
+  },
+  bodyAlerDialog: {
+    color: theme.text_icons,
+    fontSize: 22,
+    fontWeight: '300',
+  },
+  alertButtons: {
+    color: theme.text_icons,
+    height: 30,
+    borderRadius: 25,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    width: 80
+  },
 })

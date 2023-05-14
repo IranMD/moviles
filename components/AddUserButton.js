@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Button, AlertDialog, Text } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Button, Text, AlertDialog, Input, useState } from 'native-base';
 import React from "react";
-import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import {  View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
 import GradientDashboard from './GradientDashboard';
@@ -12,107 +12,56 @@ import DisableGradientButton from './DisableGradientButton';
 import GradientIcon from './GradientIcon';
 import DeleteGradientButton from './DeleteGradientButton';
 import SelectDropdown from 'react-native-select-dropdown';
-import AddUserButton from './AddUserButton';
-export default function UsersScreen() {
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+export default function AddUserButton() {
+
     const { isOpen, onOpen, onClose } = useDisclose();
+
     const role = ["Waiter", "Chef"];
+
     const area = ["Kitchen", "Tables", "Bar"];
-    const users = [
-        { id: '1', name: 'Luis Fernando Jasso Frausto', job: 'Head Waiter', contact: 'luis.jasso@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
-        { id: '2', name: 'Iran Mendoza De La Torre', job: 'Waitress', contact: 'iranmendoza@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
-        { id: '3', name: 'Luis Fernando Jasso Frausto', job: 'Head Waiter', contact: 'luis.jasso@gmail.com', picture: 'https://firebasestorage.googleapis.com/v0/b/foodapp-f2cbb.appspot.com/o/assets%2Fmenu.png?alt=media&token=' },
-    ];
 
     const [isOpenSave, setIsOpenSave] = React.useState(false);
     const onCloseSave = () => setIsOpenSave(false);
-
-    const [isOpenDelete, setIsOpenDelete] = React.useState(false);
-    const onCloseDelete = () => setIsOpenDelete(false);
-
     const cancelRef = React.useRef(null);
+
 
     return (
         <>
-            <ScrollView>
-                <View style={styles.container}>
-                    <HStack alignItems={'center'} width={'100%'}>
-                        <TouchableOpacity>
-                            <GradientIcon name="arrow-left" size={30} />
-                        </TouchableOpacity>
-                        <VerticalGradientText text="Users" style={styles.titleScreen} />
-                    </HStack>
 
-                    <HStack style={styles.categoriesRow}>
-                        <TouchableOpacity>
-                            <Center style={styles.categoriesContainer}>
-                                <HStack alignItems={'center'}>
-                                    <Text style={styles.categoriesName}> Waiters </Text>
-                                </HStack>
-                            </Center>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Center style={styles.categoriesContainer}>
-                                <HStack alignItems={'center'}>
-                                    <Text style={styles.categoriesName}> Chefs </Text>
-                                </HStack>
-                            </Center>
-                        </TouchableOpacity>
+            <TouchableOpacity onPress={(onOpen)}>
+                <VerticalGradientButton text="Add new user" style={styles.addButton} />
+            </TouchableOpacity>
 
-
-                    </HStack>
-                    <VStack style={styles.sectionContainer}>
-                        <Text style={styles.sectionTitle}>Waiters Accounts</Text>
-                        {users.map((item) => (
-                            <TouchableOpacity onPress={(onOpen)} >
-                                <Center style={styles.userContainer}>
-                                    <HStack alignItems={'center'}>
-                                        <Avatar source={{
-                                            uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                        }} size={50} />
-                                        <VStack flex={1} marginLeft={2}>
-                                            <VerticalGradientText style={styles.waiterName} numberOfLines={1} text={item.name} flex={1} />
-                                            <Text style={styles.infoJob}>{item.job}</Text>
-                                        </VStack>
-                                    </HStack>
-                                    <HStack alignItems={'center'}>
-                                        <Text style={styles.contactSubtitle}>Contact: </Text>
-                                        <Text style={styles.infoContact}>{item.contact}</Text>
-                                        <HStack justifyContent={'flex-end'} width={'100%'} flex={1}>
-                                            <VerticalGradientText text="More..." style={styles.moreText} />
-                                        </HStack>
-                                    </HStack>
-                                </Center>
-                            </TouchableOpacity>
-                        ))}
-                    </VStack>
-
-                </View>
-
-            </ScrollView>
-            <AddUserButton />
 
             <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
                 <Actionsheet.Content style={styles.actionSheet}>
-                    <VerticalGradientText text={'Modify User'} style={styles.actionSheetTitle} />
-                    <TouchableOpacity>
-                        <Avatar source={{
-                            uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        }} size={70} style={styles.avatarImage} />
 
+                    <VerticalGradientText text={'Add User'} style={styles.actionSheetTitle} />
+
+                    <TouchableOpacity>
+                        <Box style={styles.boxImage}>
+                            <GradientIcon name='file-image-plus-outline' size={45} />
+                        </Box>
                     </TouchableOpacity>
+
                     <TextInput
                         placeholder='Name'
                         placeholderTextColor={theme.text_icons}
                         style={styles.textInput} />
+
                     <TextInput
                         placeholder='Email'
                         placeholderTextColor={theme.text_icons}
                         style={styles.textInput} />
+
                     <TextInput
                         placeholder='Password'
                         placeholderTextColor={theme.text_icons}
                         style={styles.textInput}
                         secureTextEntry={true} />
+
                     <HStack justifyContent={'space-between'} width={'100%'} marginBottom={4}>
                         <SelectDropdown
                             data={area}
@@ -138,6 +87,7 @@ export default function UsersScreen() {
                             rowStyle={styles.dropdown1RowStyle}
                             rowTextStyle={styles.dropdown1RowTxtStyle}
                         />
+
                         <SelectDropdown
                             data={role}
                             // defaultValueByIndex={1}
@@ -163,15 +113,12 @@ export default function UsersScreen() {
                             rowTextStyle={styles.dropdown1RowTxtStyle}
                         />
                     </HStack>
+
                     <TouchableOpacity onPress={() => setIsOpenSave(!isOpenSave)}>
-                        <VerticalGradientButton text={'Save Changes'} style={styles.saveButton} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setIsOpenDelete(!isOpenDelete)}>
-                        <DeleteGradientButton text={'Delete User'} style={styles.saveButton} />
+                        <VerticalGradientButton text={'Save User'} style={styles.saveButton} />
                     </TouchableOpacity>
                 </Actionsheet.Content>
             </Actionsheet>
-
 
             <Center>
                 <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenSave} onClose={onCloseSave}>
@@ -182,7 +129,7 @@ export default function UsersScreen() {
                         </AlertDialog.Header>
                         <AlertDialog.Body style={styles.colorAlertDialog}>
                             <Text style={styles.bodyAlerDialog}>
-                                Save Changes?
+                                Save User?
                             </Text>
                         </AlertDialog.Body>
                         <AlertDialog.Footer style={styles.colorAlertDialog}>
@@ -198,35 +145,10 @@ export default function UsersScreen() {
                     </AlertDialog.Content>
                 </AlertDialog>
             </Center>
-
-            <Center>
-                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenDelete} onClose={onCloseDelete}>
-                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
-                        <AlertDialog.CloseButton />
-                        <AlertDialog.Header style={styles.colorAlertDialog}>
-                            <VerticalGradientText text="Delete" style={styles.headerAlerDialog} />
-                        </AlertDialog.Header>
-                        <AlertDialog.Body style={styles.colorAlertDialog}>
-                            <Text style={styles.bodyAlerDialog}>
-                                Delete User?
-                            </Text>
-                        </AlertDialog.Body>
-                        <AlertDialog.Footer style={styles.colorAlertDialog}>
-                            <Button.Group space={2}>
-                                <TouchableOpacity onPress={onCloseDelete}>
-                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <VerticalGradientButton text="Yes, Delete" style={styles.alertButtons} />
-                                </TouchableOpacity>
-                            </Button.Group>
-                        </AlertDialog.Footer>
-                    </AlertDialog.Content>
-                </AlertDialog>
-            </Center>
         </>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -303,20 +225,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingTop: 2,
     },
-    contactSubtitle: {
-        color: theme.text_icons,
-        fontSize: 12,
-        fontWeight: '500'
-    },
-    infoContact: {
-        color: theme.text_icons,
-        fontSize: 12,
-        fontWeight: '300'
-    },
-    moreText: {
-        fontSize: 12,
-        fontWeight: '300'
-    },
     actionSheet: {
         borderTopRadius: 20,
         backgroundColor: theme.cards_background,
@@ -332,7 +240,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         marginBottom: 7,
     },
-    avatarImage: {
+    boxImage: {
         backgroundColor: theme.background_color,
         borderRadius: 50,
         width: 70,
@@ -355,31 +263,13 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 14
     },
-    selectButtonContainer: {
-        borderRadius: 30,
-        borderColor: theme.gray_borderColor,
-        borderWidth: 1,
-        width: '47%',
-        marginBottom: 10,
-        height: 30,
-    },
     saveButton: {
         color: theme.text_icons,
         width: 320,
         height: 30,
         borderRadius: 25,
-        padding: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
         textAlign: 'center',
-        marginTop: 7
-    },
-    selectButton: {
-        width: '100%',
-        color: theme.text_icons,
-        paddingTop: 0,
-        paddingBottom: 0,
-        alignContent: 'center'
+        textAlignVertical: 'center',
     },
     dropdown1BtnStyle: {
         width: '47%',
@@ -427,5 +317,6 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center', 
         width: 80
     },
+
 
 })

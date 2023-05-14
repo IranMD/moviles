@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState, FlatList } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState, FlatList, AlertDialog, Text, Button } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
 import GradientDashboard from './GradientDashboard';
@@ -26,32 +26,26 @@ export default function TableScreen() {
 
     ];
 
+    const [isOpenAdd, setIsOpenAdd] = React.useState(false);
+    const onCloseAdd = () => setIsOpenAdd(false);
+
+    const [isOpenDelete, setIsOpenDelete] = React.useState(false);
+    const onCloseDelete = () => setIsOpenDelete(false);
+
+    const cancelRef = React.useRef(null);
+
     return (
         <>
             <View style={styles.container}>
-            <HStack alignItems={'center'} width={'100%'} marginBottom={5}>
+                <HStack alignItems={'center'} width={'100%'} marginBottom={5}>
                     <TouchableOpacity>
                         <GradientIcon name="arrow-left" size={30} />
                     </TouchableOpacity>
                     <VerticalGradientText text="Tables" style={styles.titleScreen} />
                 </HStack>
 
-                <Actionsheet isOpen={isOpen} onClose={onClose} hideDragIndicator>
-                    <Actionsheet.Content style={styles.actionSheet}>
-                        <VerticalGradientText text={'Delete Table 1?'} style={styles.actionSheetTitle} />
-                        <HStack style={styles.containerActionButtons}>
-                            <TouchableOpacity onPress={onClose}>
-                                <VerticalGradientButton text="Cancel" style={styles.actionButton} />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={(onOpen)}>
-                                <DeleteGradientButton text="Yes, delete" style={styles.actionButton} />
-                            </TouchableOpacity>
-                        </HStack>
-                    </Actionsheet.Content>
-                </Actionsheet>
-
                 <FlatList numColumns={2} data={tables} renderItem={({ item }) => {
-                    return <TouchableOpacity onPress={(onOpen)}>
+                    return <TouchableOpacity onPress={() => setIsOpenDelete(!isOpenDelete)}>
                         <Center style={styles.tableContainer} justifyContent={'flex-start'}>
                             <HStack alignItems={'center'} width={'100%'}>
                                 <VerticalGradientText text={item.number} style={styles.numberTable} />
@@ -71,11 +65,61 @@ export default function TableScreen() {
                 }} />
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => setIsOpenAdd(!isOpenAdd)}>
                 <VerticalGradientButton text="Add Table" style={styles.addButton} />
             </TouchableOpacity>
 
+            <Center>
+                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenAdd} onClose={onCloseAdd}>
+                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+                        <AlertDialog.CloseButton />
+                        <AlertDialog.Header style={styles.colorAlertDialog}>
+                            <VerticalGradientText text="New Table" style={styles.headerAlerDialog} />
+                        </AlertDialog.Header>
+                        <AlertDialog.Body style={styles.colorAlertDialog}>
+                            <Text style={styles.bodyAlerDialog}>
+                                Add New Table?
+                            </Text>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer style={styles.colorAlertDialog}>
+                            <Button.Group space={2}>
+                                <TouchableOpacity onPress={onCloseAdd}>
+                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <VerticalGradientButton text="Yes, Add" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                            </Button.Group>
+                        </AlertDialog.Footer>
+                    </AlertDialog.Content>
+                </AlertDialog>
+            </Center>
 
+            <Center>
+                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenDelete} onClose={onCloseDelete}>
+                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+                        <AlertDialog.CloseButton />
+                        <AlertDialog.Header style={styles.colorAlertDialog}>
+                            <VerticalGradientText text="Delete Table" style={styles.headerAlerDialog} />
+                        </AlertDialog.Header>
+                        <AlertDialog.Body style={styles.colorAlertDialog}>
+                            <Text style={styles.bodyAlerDialog}>
+                                Delete Table 1?
+                            </Text>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer style={styles.colorAlertDialog}>
+                            <Button.Group space={2}>
+                                <TouchableOpacity onPress={onCloseDelete}>
+                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <VerticalGradientButton text="Yes, Delete" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                            </Button.Group>
+                        </AlertDialog.Footer>
+                    </AlertDialog.Content>
+                </AlertDialog>
+            </Center>
 
         </>
     );
@@ -135,36 +179,26 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingTop: 2,
     },
-    actionSheet: {
-        borderTopRadius: 20,
+    colorAlertDialog: {
         backgroundColor: theme.cards_background,
-        paddingTop: 20,
-        paddingBottom: 7,
-        width: '100%',
+        borderColor: 'transparent'
     },
-    actionSheetTitle: {
-        fontSize: 26,
-        fontWeight: '500',
-        paddingLeft: 20,
-        marginBottom: 7, 
-        textAlign: 'left',  
-        width: 370
+    headerAlerDialog: {
+        fontSize: 25,
+        fontWeight: '700',
     },
-    containerActionButtons: {
-        justifyContent: 'space-between',
-        width: '100%',
-        borderTopColor: theme.gray_borderColor,
-        borderTopWidth: 1,
-        paddingTop: 15
-    },
-    actionButton: {
+    bodyAlerDialog: {
+        color: theme.text_icons,
+        fontSize: 22,
+        fontWeight: '300', 
+    },    
+    alertButtons: {
         color: theme.text_icons,
         height: 30,
         borderRadius: 25,
-        marginBottom: 15,
         textAlign: 'center',
-        width: 170,
-        textAlignVertical: 'center'
+        textAlignVertical: 'center', 
+        width: 80
     },
 
 })

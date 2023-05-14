@@ -7,10 +7,12 @@ import GradientButton from './GradientButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import theme from './theme';
+import SelectDropdown from 'react-native-select-dropdown';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 export default function Signin() {
-
+    const countries = ["Egypt", "Canada", "Australia", "Ireland"]
     return (
         <View style={styles.container}>
             <GradientText text="FoodApp" style={[styles.title]} />
@@ -32,7 +34,7 @@ export default function Signin() {
                 <TextInput
                     placeholder='Password'
                     placeholderTextColor={theme.text_icons}
-                    secureTextEntry={true} 
+                    secureTextEntry={true}
                     style={styles.textInput}
                 />
             </HStack>
@@ -42,10 +44,39 @@ export default function Signin() {
                 <TextInput
                     placeholder='Confirm Password'
                     placeholderTextColor={theme.text_icons}
-                    secureTextEntry={true} 
+                    secureTextEntry={true}
                     style={styles.textInput}
                 />
             </HStack>
+
+
+            <SelectDropdown
+                data={countries}
+                // defaultValueByIndex={1}
+                // defaultValue={'Egypt'}
+                onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                }}
+                defaultButtonText={'Select country'}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem;
+                }}
+                rowTextForSelection={(item, index) => {
+                    return item;
+                }}
+                buttonStyle={styles.dropdown1BtnStyle}
+                buttonTextStyle={styles.dropdown1BtnTxtStyle}
+                renderDropdownIcon={isOpened => {
+                    return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={theme.text_icons} size={18} />;
+                }}
+                dropdownIconPosition={'right'}
+                dropdownStyle={styles.dropdown1DropdownStyle}
+                rowStyle={styles.dropdown1RowStyle}
+                rowTextStyle={styles.dropdown1RowTxtStyle}
+            />
+
+
+
 
 
             <TouchableOpacity style={styles.containerButton}>
@@ -53,7 +84,7 @@ export default function Signin() {
             </TouchableOpacity>
 
             <TouchableOpacity >
-                <GradientText text="Log in" style={styles.link}/>
+                <GradientText text="Log in" style={styles.link} />
             </TouchableOpacity>
         </View>
 
@@ -107,10 +138,32 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingLeft: 10,
         height: 30,
-    }, 
+    },
     link: {
         marginTop: 15,
         fontSize: 14,
         textDecorationLine: 'underline'
-    }
+    },
+    dropdown1BtnStyle: {
+        width: '80%',
+        height: 50,
+        backgroundColor: theme.background_color,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: theme.gray_borderColor,
+    },
+    dropdown1BtnTxtStyle: {
+        color: theme.text_icons,
+        textAlign: 'left'
+    },
+    dropdown1DropdownStyle: { 
+        backgroundColor: theme.background_color 
+    },
+    dropdown1RowStyle: { 
+        backgroundColor: theme.cards_background, 
+        borderBottomColor: theme.gray_borderColor 
+    },
+    dropdown1RowTxtStyle: { 
+        color: theme.text_icons, 
+        textAlign: 'left' },
 })

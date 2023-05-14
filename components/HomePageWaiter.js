@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState, FlatList } from 'native-base';
+import { Center, HStack, Avatar, VStack, Progress, Box, AspectRatio, Image, Actionsheet, FormControl, Select, useDisclose, Hidden, CheckIcon, Input, useState, FlatList, AlertDialog, Button, Text } from 'native-base';
 import React from "react";
-import { Text, View, Button, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
+import { View, StyleSheet, TextInput, ScrollView, TouchableOpacity, Pressable } from "react-native";
 import VerticalGradientText from './VerticalGradientText';
 import VerticalGradientButton from './VerticalGradientButton';
 import GradientDashboard from './GradientDashboard';
@@ -17,6 +17,14 @@ import VerticalGradientButtonIcon from './VerticalGradientButtonIcon';
 export default function HomePageWaiter() {
 
     const { isOpen, onOpen, onClose } = useDisclose();
+    const [isOpenAlert, setIsOpenAlert] = React.useState(false);
+
+    const [isOpenLogout, setIsOpenLogout] = React.useState(false);
+    const onCloseLogout = () => setIsOpenLogout(false);
+
+    const onCloseAlert = () => setIsOpenAlert(false);
+
+    const cancelRef = React.useRef(null);
 
     const tables = [
         { id: 1, number: 1, status: 'On hold', waiter: 'Don Wicho' },
@@ -58,15 +66,15 @@ export default function HomePageWaiter() {
 
                         <Text style={styles.dateText}>Date of hire: 04/03/2023</Text>
 
-                        <TouchableOpacity>
-                            <GradientButton text={'Log Out'} style={styles.logOutButton} />
+                        <TouchableOpacity onPress={() => setIsOpenLogout(!isOpenLogout)}>
+                            <GradientButton text={'Logout'} style={styles.logOutButton} />
                         </TouchableOpacity>
 
                     </Actionsheet.Content>
                 </Actionsheet>
 
                 <FlatList numColumns={2} data={tables} renderItem={({ item }) => {
-                    return <TouchableOpacity onPress={(onOpen)}>
+                    return <TouchableOpacity onPress={() => setIsOpenAlert(!isOpenAlert)}>
                         <Center style={styles.tableContainer} justifyContent={'flex-start'}>
                             <HStack alignItems={'center'} width={'100%'}>
                                 <VerticalGradientText text={item.number} style={styles.numberTable} />
@@ -85,8 +93,60 @@ export default function HomePageWaiter() {
 
             <TouchableOpacity>
                 <MaterialCommunityIcons name='silverware' size={19} style={styles.menuIcon} />
-                <VerticalGradientButton text="Menu" style={styles.addButton} />
+                <VerticalGradientButton text="Menu" style={styles.menuButton} />
             </TouchableOpacity>
+
+            <Center>
+                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenAlert} onClose={onCloseAlert}>
+                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+                        <AlertDialog.CloseButton />
+                        <AlertDialog.Header style={styles.colorAlertDialog}>
+                            <VerticalGradientText text="Table 1" style={styles.headerAlerDialog} />
+                        </AlertDialog.Header>
+                        <AlertDialog.Body style={styles.colorAlertDialog}>
+                            <Text style={styles.bodyAlerDialog}>
+                                Serve this table?
+                            </Text>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer style={styles.colorAlertDialog}>
+                            <Button.Group space={2}>
+                                <TouchableOpacity onPress={onCloseAlert}>
+                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <VerticalGradientButton text="Yes, Serve" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                            </Button.Group>
+                        </AlertDialog.Footer>
+                    </AlertDialog.Content>
+                </AlertDialog>
+            </Center>
+
+            <Center>
+                <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpenLogout} onClose={onCloseLogout}>
+                    <AlertDialog.Content borderColor={theme.gray_borderColor} borderWidth={1}>
+                        <AlertDialog.CloseButton />
+                        <AlertDialog.Header style={styles.colorAlertDialog}>
+                            <VerticalGradientText text="Logout" style={styles.headerAlerDialog} />
+                        </AlertDialog.Header>
+                        <AlertDialog.Body style={styles.colorAlertDialog}>
+                            <Text style={styles.bodyAlerDialog}>
+                                You will be returned to the login screen
+                            </Text>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer style={styles.colorAlertDialog}>
+                            <Button.Group space={2}>
+                                <TouchableOpacity onPress={onCloseLogout}>
+                                    <DeleteGradientButton text="Cancel" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <VerticalGradientButton text="Logout" style={styles.alertButtons} />
+                                </TouchableOpacity>
+                            </Button.Group>
+                        </AlertDialog.Footer>
+                    </AlertDialog.Content>
+                </AlertDialog>
+            </Center>
 
 
 
@@ -138,7 +198,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         paddingRight: 3
     },
-    addButton: {
+    menuButton: {
         color: theme.text_icons,
         width: '90%',
         height: 30,
@@ -155,30 +215,30 @@ const styles = StyleSheet.create({
         paddingRight: 60,
         paddingTop: 20,
         paddingBottom: 20,
-      },
-      nameText: {
+    },
+    nameText: {
         fontSize: 30,
         fontWeight: '700',
         paddingLeft: 20
-      },
-      rowActionSheet: {
+    },
+    rowActionSheet: {
         paddingBottom: 10
-      },
-      jobText: {
+    },
+    jobText: {
         color: theme.text_icons,
         fontSize: 20,
         fontWeight: '300',
         paddingLeft: 20
-      },
-      dateText: {
+    },
+    dateText: {
         color: theme.text_icons,
         textAlign: 'left',
         fontSize: 17,
         fontWeight: '200',
         width: '130%',
         paddingBottom: 17
-      },
-      logOutButton: {
+    },
+    logOutButton: {
         color: theme.text_icons,
         width: 300,
         height: 30,
@@ -187,13 +247,33 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         textAlignVertical: 'center'
-      }, 
-      menuIcon: {
+    },
+    menuIcon: {
         color: theme.text_icons,
         zIndex: 2,
         position: 'absolute',
         marginLeft: 147,
         marginTop: 4
-    }, 
-
+    },
+    colorAlertDialog: {
+        backgroundColor: theme.cards_background,
+        borderColor: 'transparent'
+    },
+    headerAlerDialog: {
+        fontSize: 25,
+        fontWeight: '700',
+    },
+    bodyAlerDialog: {
+        color: theme.text_icons,
+        fontSize: 22,
+        fontWeight: '300',
+    },
+    alertButtons: {
+        color: theme.text_icons,
+        height: 30,
+        borderRadius: 25,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        width: 75
+    },
 })

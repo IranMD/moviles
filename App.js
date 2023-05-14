@@ -36,6 +36,7 @@ import DetailsTableScreen from "./components/DetailsTableScreen";
 import MealDetail from "./components/MealDetail";
 import HomePageChef from "./components/HomePageChef";
 import SignIn from "./components/SignIn";
+import LoginMoviles from "./components/LoginMoviles";
 
 
 // extend the theme
@@ -65,7 +66,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <View style={styles.mainContainer}>
-        <SignIn/>
+        <TableScreen/>
       </View>
     </NativeBaseProvider>
   );
